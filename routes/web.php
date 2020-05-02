@@ -27,21 +27,24 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // // Route::get('/home', 'AdminController@admin')->name('home');
 // Route::resource('admin/members', 'porn\\membersController');
-Route::resource('admin/members', 'porn\\membersController');
-// Route::get('/admin', 'AdminController@admin');
+
+Route::get('/admin', 'AdminController@admin');
 
 
-// Route::get('/admin', function () {
-//     return view('/admin/dashboard');
-// });
-
-Route::get('/admin', 'AdminController@admin')
-    ->middleware('is_admin')
-    ->name('admin');
-
-Route::resource('admin/payments', 'porn\\paymentsController');
-
-Route::resource('admin/addtime', 'porn\\addtimeController');
-Route::resource('admin/packages', 'Admin\\packagesController');
 
 
+
+
+Route::middleware(['auth'])->group(function () {
+    //common routes will goes here
+    Route::middleware(['is_admin'])->group(function () { //admin routes will goes here
+        Route::resource('admin/payments', 'porn\\paymentsController');
+        Route::resource('admin/addtime', 'porn\\addtimeController');
+        Route::resource('admin/members', 'porn\\membersController');
+        Route::resource('admin/packages', 'Admin\\packagesController');
+    });
+
+    Route::middleware(['editor'])->group(function () {
+        //editor routes goes here.
+    });
+});
