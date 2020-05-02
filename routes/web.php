@@ -28,7 +28,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // // Route::get('/home', 'AdminController@admin')->name('home');
 // Route::resource('admin/members', 'porn\\membersController');
 
-Route::get('/admin', 'AdminController@admin');
+
 
 
 
@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('admin/addtime', 'porn\\addtimeController');
         Route::resource('admin/members', 'porn\\membersController');
         Route::resource('admin/packages', 'Admin\\packagesController');
+        Route::get('/admin', 'AdminController@admin');
     });
 
     Route::middleware(['editor'])->group(function () {

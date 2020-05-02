@@ -8,7 +8,7 @@
 <div class="col-md-3">
     <div class="card">
         <div class="card-header">
-            Menu Admin
+            Menu Member
         </div>
 
         <div class="card-body">
@@ -20,10 +20,10 @@
                 </a>
                 <a href="{{ url('/admin/members') }}" style="color:white;width: 100%;">
                     <li class="{{ (request()->is('admin/members*')) ? 'active' : '' }}">
-                        Member
+                        Memberss
                     </li>
                 </a>
-                <a href="{{ url('/admin/payments') }}" style="color:white;width: 100%;">
+                <!-- <a href="{{ url('/admin/payments') }}" style="color:white;width: 100%;">
                     <li class="{{ (request()->is('admin/payments*')) ? 'active' : '' }}">
                         Payment
                     </li>
@@ -37,7 +37,7 @@
                     <li class="{{ (request()->is('admin/packages*')) ? 'active' : '' }}">
                         Packages
                     </li>
-                </a>
+                </a> -->
             </ul>
         </div>
     </div>

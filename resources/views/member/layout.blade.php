@@ -123,16 +123,6 @@
             }
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script>
-   var user = {!! auth()->user() !!};
-//    alert(user.name);
-   Swal.fire(
-    user.name,
-  'Welcome ',
-  'success'
-)
-</script>
 </body>
 
 </html>

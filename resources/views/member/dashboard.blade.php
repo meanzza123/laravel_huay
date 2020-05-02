@@ -31,7 +31,7 @@
             <div class="container">
                 <div class="navbar-translate">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <span>สูตรหวย •</span> โอกาศชนะสูง
+                        <span>สูตรหวย •</span> โอกาศชนะสูงsssssssss
                     </a>
                     <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-bar bar1"></span>
@@ -83,16 +83,15 @@
                 </div>
             </div>
         </nav>
-
-        <section style="padding-top: 20vh;">
-            <main class="py-4">
-                @yield('content')
-            </main>
-        </section>
-
-
-
     </div>
+    <section style="padding-top: 20vh;">
+
+        <main class="py-4">
+
+            @yield('content')
+        </main>
+    </section>
+
     <!--   Core JS Files   -->
 
     <script type="text/javascript" src="{{ URL::asset('/assets/js/core/jquery.min.js') }}" defer></script>
@@ -123,16 +122,6 @@
             }
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script>
-   var user = {!! auth()->user() !!};
-//    alert(user.name);
-   Swal.fire(
-    user.name,
-  'Welcome ',
-  'success'
-)
-</script>
 </body>
 
 </html>

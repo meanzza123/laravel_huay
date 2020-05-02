@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use DateTime;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -40,5 +40,9 @@ class User extends Authenticatable
     ];
     public function isAdmin()    {
         return $this->type === self::ADMIN_TYPE;
+    }
+
+    public function isMember()    {
+        $timeNow = strtotime(date("Y-m-d H:i:s"));
     }
 }

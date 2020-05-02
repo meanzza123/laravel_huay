@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Auth;
 use Illuminate\Http\Request;
 
@@ -23,16 +24,14 @@ class HomeController extends Controller
      */
     public function  checkAdmin()
     {
-        if(Auth::User()->type=='admin'){
+        if (Auth::User()->type == 'admin') {
+            return view('admin');
+        } else {
             return view('home');
-
-         } else {
-           return view('home');
-         }
+        }
     }
     public function index()
     {
-        $this->checkAdmin();
-        return view('home');
+      return  $this->checkAdmin();
     }
 }
