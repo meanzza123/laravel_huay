@@ -123,8 +123,8 @@
             }
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
+    <!-- <script>
    var user = {!! auth()->user() !!};
 //    alert(user.name);
    Swal.fire(
@@ -132,7 +132,7 @@
   'Welcome ',
   'success'
 )
-</script>
+</script> -->
 </body>
 
 </html>

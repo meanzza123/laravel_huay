@@ -13,9 +13,9 @@
 
         <div class="card-body">
             <ul class="nav" role="tablist">
-                <a href="{{ url('/admin') }}" style="color:white;width: 100%;">
+                <a href="{{ url('/home') }}" style="color:white;width: 100%;">
                     <li>
-                        Dashboard
+                       สูตรหวย
                     </li>
                 </a>
                 <a href="{{ url('/admin/members') }}" style="color:white;width: 100%;">

@@ -22,8 +22,9 @@ Auth::routes();
 //      ->middleware('is_admin')
 //     ->name('admin');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/home', 'HomeController@index');
+Route::get('/main/profile', 'ProfileController@index');
+Route::resource('/main/profile', 'ProfileController');
 
 // // Route::get('/home', 'AdminController@admin')->name('home');
 // Route::resource('admin/members', 'porn\\membersController');
