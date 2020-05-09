@@ -23,7 +23,8 @@
     {!! $errors->first('package', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('image') ? 'has-error' : ''}}">
-    <label for="image" class="control-label">{{ 'Image' }}</label>
+    <label  class="control-label">  <i class="tim-icons icon-image-02" style="font-size: 40px;" aria-hidden="true" for="image"></i>  {{ 'อัพโหลดสลิป' }}</label>
+   
     <input class="form-control" name="image" type="file" id="image" value="{{ isset($payment->image) ? $payment->image : ''}}" >
     {!! $errors->first('image', '<p class="help-block">:message</p>') !!}
 </div>
@@ -32,3 +33,5 @@
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>
+
+

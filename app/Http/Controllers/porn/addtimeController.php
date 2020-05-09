@@ -8,6 +8,8 @@ use DateTime;
 use App\addtime;
 use App\User;
 use Illuminate\Http\Request;
+use App\payment;
+use Faker\Provider\Payment as FakerPayment;
 
 class addtimeController extends Controller
 {
@@ -53,6 +55,20 @@ class addtimeController extends Controller
     public function store(Request $request)
     {
 
+
+        //Checked Staatus Payment
+        if ($request->input('pay_id')) {
+            $status = 'actived';
+            $updatePay = array(
+                'status' => $status
+            );
+            $payment = payment::where(['id' => $request->input('pay_id'), 'status' => $status])->get();
+
+            if ($payment) {
+                return redirect()->back()->with('message', 'addtime updated!');
+            }
+        }
+
         $timeNow = strtotime(date("Y-m-d H:i:s"));
         $timeAdd = $request->input('time');
         $remake = '+' . $timeAdd . 'day';
@@ -68,6 +84,8 @@ class addtimeController extends Controller
             $timeInsert = new DateTime($timeInsert);
             $timeInsert->modify($remake);
         }
+
+        //updateTime on user
         $updates = array(
             'time' => $timeInsert
         );
@@ -80,6 +98,16 @@ class addtimeController extends Controller
             'time' => $request->input('time')
         );
         addtime::create($requestData);
+
+        //updateStaatus Payment
+        if ($request->input('pay_id')) {
+            $status = 'actived';
+            $updatePay = array(
+                'status' => $status
+            );
+            $payment = payment::where('id', '=', $request->input('pay_id'))->update($updatePay);
+        }
+
 
         return redirect('admin/addtime')->with('flash_message', 'addtime added!');
     }

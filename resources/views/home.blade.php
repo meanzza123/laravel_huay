@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row">
         @include('member.sidebar')
@@ -12,7 +13,7 @@
 
                     <br />
 
-                    <div class="row row-grid justify-content-between align-items-center text-left" style="box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+                    <div class="row row-grid justify-content-between align-items-center text-left col-md-6" style="box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
         padding:10px;border-radius:4px;">
                         <div class="card-body">
                             <!-- Tab panes -->
@@ -38,9 +39,21 @@
                                     <li class="letter ">8</li>
                                     <li class="letter">0</li>
                                     <li class="letter clearl" id="del" style="width: 110px!important;">DEL</li>
-                                    <li class="letter" style="width: 120px!important;">
-                                        <</li> <!-- <button class="letter btn deafult" id="cal">Cal</button> -->
+
+
+                                    <li class="letter" style="width: 120px!important;"><</li>
+
                                 </ul>
+
+                                <button style="margin: auto;
+                                width: 70%;
+                                padding: 20px;
+                                background-color: lightslategrey;
+                                color: white;
+                                font-weight: bold;
+                                border-radius: 4px;
+                                border: none;
+                                box-shadow: 2px 4px 7px blac" id="cal" >คำนวณ</button>
                             </div>
 
 
@@ -54,14 +67,17 @@
     </div>
 </div>
 @endsection
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 <script type="text/javascript" src="{{ URL::asset('/assets/js/core/jquery.min.js') }}"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $(".letter").click(function() {
+    var swal_html = '<div class="panel" style="background:aliceblue;font-weight:bold"><div class="panel-heading panel-info text-center btn-info"> <b>Import Status</b> </div> <div class="panel-body"><div class="text-center"><b><p style="font-weight:bold">Total number of not inserted  rows : add data</p><p style="font-weight:bold">Row numbers:Add data</p></b></div></div></div>';
+    $(document).ready(function () {
+        $(".letter").click(function () {
             var value = $(this).text();
             if (value !== "<") {
-                $(".numberinput").each(function() {
+                $(".numberinput").each(function () {
                     var a = $(this).text();
                     if (!a) {
                         $(this).text(value);
@@ -70,7 +86,7 @@
                     }
                 });
             } else {
-                $($(".numberinput").get().reverse()).each(function() {
+                $($(".numberinput").get().reverse()).each(function () {
                     var a = $(this).text();
                     if (a) {
                         $(this).text("");
@@ -79,12 +95,20 @@
                     }
                 });
             }
+
         });
 
-
-        $("#cal").click(function() {
+        $("#cal").click(function () {
             var value = $(".numberinput").text();
-            // var num1 = ("0" + value.substring(0, 1)).slice(-2);
+            var num1 = ("0" + value.substring(0, 1)).slice(-2);
+            if(value.length != 5){
+                Swal.fire(
+                'ผลการคำนวณ ผิดพลาด',
+                'กรุณาระบุตัวเลข 5 หลัก',
+                'warning'
+            )
+                return false;
+            }else{
             var num1 = value.substring(0, 1);
             var num2 = value.substring(1, 2);
             var num3 = value.substring(2, 3);
@@ -93,11 +117,13 @@
             var resultSet1 = (parseInt(num1) + parseInt(num4));
             var resultSet2 = (parseInt(num3) + parseInt(num5));
             var resultSetSum = subNumber(resultSet1, resultSet2);
+            }
+
         });
 
 
-        $("#del").click(function() {
-            $($(".numberinput").get().reverse()).each(function() {
+        $("#del").click(function () {
+            $($(".numberinput").get().reverse()).each(function () {
                 var a = $(this).text();
                 $(this).text("");
             });
@@ -128,14 +154,22 @@
                 res2: allsum = (parseInt(allsum + 1)),
                 res3: allsum = (parseInt(allsum + 1))
             }
-            alert(lastNumber(result.res3));
+            Swal.fire(
+                'ผลการคำนวณ',
+                'เลขชุดที่1 => ' + lastNumber(result.res1) + '<br>' + 'เลขชุดที่2 => ' + lastNumber(result.res2) + '<br>' + 'เลขชุดที่3 => ' + lastNumber(result.res3),
+                'success'
+            )
         } else {
             result = {
                 res1: allsum = (parseInt(allsum)),
                 res2: allsum = (parseInt(allsum + 1)),
                 res3: allsum = (parseInt(allsum + 1))
             }
-            alert(lastNumber(result.res1))
+            Swal.fire(
+                'ผลการคำนวณ',
+                'เลขชุดที่1 => ' + lastNumber(result.res1) + '<br>' + 'เลขชุดที่2 => ' + lastNumber(result.res2) + '<br>' + 'เลขชุดที่3 => ' + lastNumber(result.res3),
+                'success'
+            )
         }
 
     }

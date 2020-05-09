@@ -33,10 +33,11 @@
                                     <td> {{ $payment->package }} </td>
                                 </tr>
                                 <tr>
-
-
-                                    <td> รูป</td>
-                                    <td> {{ $payment->image }} </td>
+                                    <td> <button class="btn btn-primary  btn-sm" id="showImg" style="padding: 10px;">
+                                        <i class="tim-icons icon-zoom-split"></i> zoom
+                                    </button></td>
+                                    
+                                    <td> <img src="{{ asset($payment->image) }}" width="300px" height="300px" alt=""> </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -65,6 +66,8 @@
 
                 <form method="POST" action="{{ url('/admin/addtime') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                         {{ csrf_field() }}
+                            <input hidden class="form-control" name="pay_id" type="text" id="pay_id" value="{{ isset($payment->id) ? $payment->id : ''}}">
+                   
                         <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
                             <label for="name" class="control-label">{{ 'ชื่อ' }}</label>
                             <input class="form-control" name="name" type="text" id="name" value="{{ isset($payment->name) ? $payment->name : ''}}">
@@ -102,3 +105,34 @@
     </div>
 </div>
 <!--  End Modal -->
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+<script type="text/javascript" src="{{ URL::asset('/assets/js/core/jquery.min.js') }}"></script>
+
+
+
+
+<script>
+    var user = {!! auth()-> user() !!};
+    var sites = {!! json_encode($payment->toArray()) !!};
+    
+    $(document).ready(function() {
+        $("#showImg").click(function() {
+
+            Swal.fire({
+  imageUrl: 'http://127.0.0.1:8000'+sites.image,
+  imageHeight: 600,
+  imageWidth: 600,
+  imageAlt: 'A tall image'
+})
+            // Swal.fire(
+            //     asset(sites.image),
+            //     'Welcome ',
+            //     'success'
+            // )
+            // alert("adasd");
+            
+        });
+    });
+</script>

@@ -21,6 +21,10 @@ class paymentsController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
+        $pending= $request->get('pending');
+
+        $actived= $request->get('actived');
+
         if (!empty($keyword)) {
             $payments = payment::where('name', 'LIKE', "%$keyword%")
                 ->orWhere('tel', 'LIKE', "%$keyword%")
@@ -31,6 +35,15 @@ class paymentsController extends Controller
         } else {
             $payments = payment::latest()->paginate($perPage);
         }
+        if (!empty($pending)) {
+            $payments = payment::where('status', '=', "pending")
+                ->latest()->paginate($perPage);
+        } 
+
+        if (!empty($actived)) {
+            $payments = payment::where('status', '=', "actived")
+                ->latest()->paginate($perPage);
+        } 
 
         return view('porn.payments.index', compact('payments'));
     }
@@ -77,7 +90,7 @@ class paymentsController extends Controller
     {
         $payment = payment::findOrFail($id);
         $packages = package::where('status', '=', "active")->get();
-        return view('porn.payments.show', compact('payment','packages'));
+        return view('porn.payments.show',compact('payment'),compact('packages'));
     }
 
     /**

@@ -62,6 +62,7 @@
                             <a class="btn btn-lg  nav-link text-justify" style="width:160px; padding:20px;margin:auto;    display: block;margin-top: 10px;" href="{{ route('register') }}"> <i class="tim-icons icon-badge"></i> {{ __('สมัครสมาชิก') }}</a>
                         </li>
                         @endif @else
+                        
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ Auth::user()->name }}

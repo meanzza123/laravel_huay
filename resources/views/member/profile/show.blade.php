@@ -7,9 +7,9 @@
 
         <div class="col-md-9">
             <div class="card">
-                <div class="card-header"> {{ Auth::user()->name }}</div>
+                <div class="card-header">ข้อมูลคุณ {{ Auth::user()->name }}</div>
                 <div class="card-body">
-                    <a href="{{ url('/admin/members') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                    <a href="{{ url('/main/profile/') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                     <a href="{{ url('/main/profile/' . Auth::user()->id . '/edit') }}" title="Edit member"><button class="btn btn-primary btn-sm"><i class="tim-icons icon-pencil" aria-hidden="true"></i> Edit</button></a>
 
                   

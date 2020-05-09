@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <a href="{{ url('/home') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                     <button class="btn btn-primary  btn-sm float-sm-right" data-toggle="modal" data-target="#myModal">
-                    <i class="tim-icons icon-refresh-02"></i> เปลี่ยนรหัสผ่าน
+                        <i class="tim-icons icon-refresh-02"></i> เปลี่ยนรหัสผ่าน
                     </button>
                     <br />
                     <br />
@@ -23,7 +23,7 @@
                         @endforeach
                     </ul>
                     @endif
-                    
+
                     <form method="POST" action="{{ url('main/profile/' . Auth::user()->id ) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                         {{ method_field('PATCH') }}
                         {{ csrf_field() }}
@@ -53,22 +53,43 @@
             </div>
             <div class="modal-body">
                 <div class="table-responsive">
+                    <form method="POST" action="{{ route('change.password') }}">
+                        @csrf
 
-                    <form method="POST" action="{{ url('/member/profile/' .Auth::user()->id ) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                        {{ method_field('PATCH') }}
-                        {{ csrf_field() }}
-                        <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                            <label for="name" class="control-label">{{ 'ชื่อ' }}</label>
-                            <input class="form-control" name="name" type="text" id="name" value="{{ isset($member->name) ? $member->name : ''}}">
+                        @foreach ($errors->all() as $error)
+                        <p class="text-danger">{{ $error }}</p>
+                        @endforeach
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Current Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="current_password" autocomplete="current-password">
+                            </div>
                         </div>
-                        <div class="form-group {{ $errors->has('tel') ? 'has-error' : ''}}">
-                            <label for="email" class="control-label">{{ 'เบอร์โทรศัพท์' }}</label>
-                            <input class="form-control" name="email" type="text" id="email" value="{{ isset($member->email) ? $member->email : ''}}">
-                            <input class="form-control" name="reset" type="text" id="reset" value="reset">
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">New Password</label>
+
+                            <div class="col-md-6">
+                                <input id="new_password" type="password" class="form-control" name="new_password" autocomplete="current-password">
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <input class="btn btn-primary" type="submit" value="{{ $formMode ='รีเซ็ทเวลา' }}">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancle</button>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">New Confirm Password</label>
+
+                            <div class="col-md-6">
+                                <input id="new_confirm_password" type="password" class="form-control" name="new_confirm_password" autocomplete="current-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Update Password
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>

@@ -59,9 +59,16 @@
                         <a class="btn btn-lg  nav-link text-justify" style="width:160px; padding:20px;margin:auto;    display: block;" href="{{ route('register') }}"> <i class="tim-icons icon-badge"></i> {{ __('สมัครสมาชิก') }}</a>
                     </li>
                     @endif @else
+                    <a href="{{ url('/home') }}" style="color:white;width: 100%;">
+                            <li class="btn btn-sm" style="padding: 10px;}">
+                                <i class="tim-icons icon-tv-2"></i>
+                                หน้าหลัก
+
+                            </li>
+                        </a>
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <i class="tim-icons icon-settings"></i> {{ Auth::user()->name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

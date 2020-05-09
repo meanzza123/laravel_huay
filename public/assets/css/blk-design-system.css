@@ -20893,3 +20893,20 @@ input.form-control,select.form-control{
     width: 244px;
     margin-bottom: 15px;
 }
+
+.active{
+    /* background-color: #e14eca;
+    width: 100%;
+    padding: 10px; 
+    border-radius: 13px;*/
+    /* border-bottom: 4px solid #e14eca; */
+    color: #e14eca;
+    font-weight: bold;
+  }
+
+
+  #cal:hover{
+opacity: 0.8;
+cursor: pointer;
+border: solid grey 2px;
+  }

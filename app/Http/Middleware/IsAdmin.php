@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Redirect;
 class IsAdmin
 {
     /**
@@ -20,7 +20,7 @@ class IsAdmin
             return $next($request);
         }
         else {
-            abort(403, 'Unauthorized action.');
+            return Redirect::to('home');
         }
     }
 }

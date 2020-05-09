@@ -26,14 +26,22 @@ Route::get('/home', 'HomeController@index');
 Route::get('/main/profile', 'ProfileController@index');
 Route::resource('/main/profile', 'ProfileController');
 
+Route::get('/main/payment', 'PaymentController@index');
+Route::get('/main/payment/show', 'PaymentController@show');
+Route::post('/main/payment/create', 'PaymentController@store');
+Route::resource('/main/payment', 'PaymentController');
+
+
+
 // // Route::get('/home', 'AdminController@admin')->name('home');
 // Route::resource('admin/members', 'porn\\membersController');
 
 
+Route::get('change-password', 'ChangePasswordController@index');
+Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
 
 
-
-
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
 Route::middleware(['auth'])->group(function () {

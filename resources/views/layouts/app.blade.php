@@ -59,12 +59,20 @@
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="btn btn-lg  nav-link text-justify" style="width:160px; padding:20px;margin:auto;    display: block;margin-top: 10px;" href="{{ route('register') }}"> <i class="tim-icons icon-badge"></i> {{ __('สมัครสมาชิก') }}</a>
+                            <a class="btn btn-lg  nav-link text-justify" style="width:160px; padding:20px;margin:auto; display: block;margin-top: 10px;" href="{{ route('register') }}"> <i class="tim-icons icon-badge"></i> {{ __('สมัครสมาชิก') }}</a>
                         </li>
                         @endif @else
+
+                        <a href="{{ url('/home') }}" style="color:white;width: 100%;">
+                            <li class="btn btn-sm" style="padding: 10px;}">
+                                <i class="tim-icons icon-tv-2"></i>
+                                หน้าหลัก
+
+                            </li>
+                        </a>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ Auth::user()->name }}
+                            <i class="tim-icons icon-settings"></i>  {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
